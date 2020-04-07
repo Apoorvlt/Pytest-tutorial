@@ -217,6 +217,11 @@ You have successfully configured your project and are ready to execute your firs
     pytest tests\parallel.py
     ```
 
+Below we see a screenshot that depicts our Mocha code is running over different browsers i.e Chrome, Firefox and Safari on the LambdaTest Selenium Grid Platform. The results of the test script execution along with the logs can be accessed from the LambdaTest Automation dashboard.
+
+
+![alttext](https://github.com/Apoorvlt/test/blob/master/Capture.PNG)
+
 
 #####  Routing traffic through your local machine
 - Set tunnel value to `True` in test capabilities
