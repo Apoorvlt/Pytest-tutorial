@@ -1,62 +1,222 @@
-## Python-Pytest-Selenium
-![LambdaTest Logo](https://www.lambdatest.com/static/images/logo.svg)
+![LambdaTest Logo](https://www.lambdatest.com/images/logo.svg)
 
-### Environment Setup
+## Pytest tutorial
 
-1. Global Dependencies
-    * [Install Python](https://www.python.org/downloads/)
-    * Or Install Python with [Homebrew](http://brew.sh/)
-    ```
-    $ brew install python
-    ```
-    * Install [pip](https://pip.pypa.io/en/stable/installing/) for package installation
+![alt text](https://github.com/Apoorvlt/test/blob/master/pytesti.png)
 
-2. LambdaTest Credentials
-    * In the terminal export your LambdaTest Credentials as environmental variables:
-        - For Macos & Linux
+
+## Prerequisites for Pytest tutorial 
+
+  * [Download Python](https://www.python.org/downloads/)
+  * Run the setup
+  * click on Add to path
+  * Click install now
+  * To check if python installed correctly you need to go to terminal type python in command prompt. It will show you the current version you have downloaded.
+  * To install pytest go to terminal and run
+	 
+	 ```
+	  pip install pytest
+	  ```
+  
+* **LambdaTest Credentials**
+    * To use Pytest with LambdaTest, make sure you have the 2 environment variables LT_USERNAME and LT_ACCESS_KEY set. To obtain a username and access_key, sign up for free [here](https://lambdatest.com)).
+  
+  * After signing up you can find your username and access key [here](https://accounts.lambdatest.com/detail/profile)
+ 
+  * In the terminal export your LambdaTest Credentials as environmental variables:
+       
+       * For Mac/Linux
             ```
             $ export LT_USERNAME=<your LambdaTest username>
             $ export LT_ACCESS_KEY=<your LambdaTest access key>
             ```
-        - Windows
+       
+       * For Windows
             ```
-            $ set LT_USERNAME=<your LambdaTest username>
-            $ set LT_ACCESS_KEY=<your LambdaTest access key>
-            ```
+            set LT_USERNAME=<your LambdaTest username>
+            set LT_ACCESS_KEY=<your LambdaTest access key>
+    	    ```	
+* **Setup**
+  * You can download the file. To do this click on Clone or download button. You can download zip file.
+  * To clone the file click on Clone or download button and copy the link.
+  * Then open the terminal in the folder you want to clone the file. Run the command:
+	
+	``` 
+	git clone <paste the link here>
+	```
+  
 
-3. Project
-	* The recommended way to run your tests would be in [virtualenv](https://virtualenv.readthedocs.org/en/latest/). It will isolate the build from other setups you may have running and ensure that the tests run with the specified versions of the modules specified in the requirements.txt file.
+### Test Scenario
+
+In our demonstration, we will be creating a script that uses the Selenium WebDriver to click check boxes and add button. If assert returns true, it indicates that the test case passed successfully and will show up in the automation logs dashboard else if assert returns false, the test case fails, and the errors will be displayed in the automation logs.
+
+* **Single Test**- On a single environment (Windows 10) and single browser (Chrome)
+
+You have successfully configured your project and are ready to execute your first pytest selenium testing script. Here is the configuration file for pytest selenium Testing. Lets call it <code>conftest.py</code>.
+
+	```
+	import pytest
+	from os import environ
+
+	from selenium import webdriver
+	from selenium.common.exceptions import WebDriverException
+	from selenium.webdriver.remote.remote_connection import RemoteConnection
+
+
+	@pytest.fixture(scope='function')
+	def driver(request):
+
+	    desired_caps = {}
+
+	    browser = {
+		"platform": "Windows 10",
+		"browserName": "chrome",
+		"version": "73"
+	    }
+
+	    desired_caps.update(browser)
+	    test_name = request.node.name
+	    build = environ.get('BUILD', "Sample PY Build")
+	    tunnel_id = environ.get('TUNNEL', False)
+	    username = environ.get('LT_USERNAME', None)
+	    access_key = environ.get('LT_ACCESS_KEY', None)
+
+
+	    selenium_endpoint = "http://{}:{}@hub.lambdatest.com/wd/hub".format(username, access_key)
+	    desired_caps['build'] = build
+	    desired_caps['name'] = test_name
+	    desired_caps['video']= True
+	    desired_caps['visual']= True
+	    desired_caps['network']= True
+	    desired_caps['console']= True
+
+	    executor = RemoteConnection(selenium_endpoint, resolve_ip=False)
+	    browser = webdriver.Remote(
+		command_executor=executor,
+		desired_capabilities=desired_caps
+	    )
+	    yield browser
+
+
+
+	    def fin():
+		#browser.execute_script("lambda-status=".format(str(not request.node.rep_call.failed if "passed" else "failed").lower()))
+		if request.node.rep_call.failed:
+		    browser.execute_script("lambda-status=failed")
+		else:
+		    browser.execute_script("lambda-status=passed")
+		    browser.quit()
+	    request.addfinalizer(fin)
+
+	@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+	def pytest_runtest_makereport(item, call):
+	    # this sets the result as a test attribute for LambdaTest reporting.
+	    # execute all other hooks to obtain the report object
+	    outcome = yield
+	    rep = outcome.get_result()
+
+	    # set an report attribute for each phase of a call, which can
+	    # be "setup", "call", "teardown"
+	    setattr(item, "rep_" + rep.when, rep)
+	```
+
+* **Test code**
+
+	```
+	import pytest
+	import sys
+
+	@pytest.mark.usefixtures('driver')
+	class TestLink:
+
+	    def test_title(self, driver):
+		"""
+		Verify click and title of page
+		:return: None
+		"""
+		driver.get('https://lambdatest.github.io/sample-todo-app/')
+		driver.find_element_by_name("li1").click()
+		driver.find_element_by_name("li2").click()
+
+		title = "Sample page - lambdatest.com"
+		assert title == driver.title
+	```
+
+* To run single test <code>single.py</code> open terminal in the folder you have downloaded or cloned the github repository.
+
+* The recommended way to run your tests would be in [virtualenv](https://virtualenv.readthedocs.org/en/latest/). It will isolate the build from other setups you may have running and ensure that the tests run with the specified versions of the modules specified in the requirements.txt file.
 
 	```bash
     pip install virtualenv
     ```
-	* Create a virtual environment in your project folder the environment name is arbitrary.
+* Create a virtual environment in your project folder the environment name is arbitrary.
 
 	```bash
     virtualenv venv
     ```
 
-	* Activate the environment:
-
-	```bash
-    source venv/bin/activate
-    ```
-	* Install the required packages:
+* Install the required packages:
 
 	```bash
     pip install -r requirements.txt
     ```
+    
+* To run single.py file :
 
-### Running Tests:  -n option designates number of parallel tests and -s to disable output capture.
+     ```
+     pytest tests\single.py 
+     ```
 
-*  Tests in Parallel:
+* **Parallel Test code**
+	```
+	import pytest
+        import sys
 
+	@pytest.mark.usefixtures('driver')
+	class TestLink:
+
+        def test_title(self, driver):
+		"""
+		Verify click and title of page
+		:return: None
+		"""
+		driver.get('https://lambdatest.github.io/sample-todo-app/')
+		driver.find_element_by_name("li1").click()
+		driver.find_element_by_name("li2").click()
+
+		title = "Sample page - lambdatest.com"
+		assert title == driver.title
+
+
+        def test_item(self, driver):
+		"""
+		Verify item submission
+		:return: None
+		"""
+		driver.get('https://lambdatest.github.io/sample-todo-app/')
+		sample_text = "Happy Testing at LambdaTest"
+		email_text_field = driver.find_element_by_id("sampletodotext")
+		email_text_field.send_keys(sample_text)
+
+        driver.find_element_by_id("addbutton").click()
+
+	``` 
+
+
+*  By default, pytest runs tests in sequential order. In a real scenario, a test suite will have a number of test files and each file will have a bunch of tests. This will lead to a large execution time. To overcome this, pytest provides us with an option to run tests in parallel.
+
+   For this, we need to first install the pytest-xdist plugin. Install pytest-xdist by running the following command −
+    
     ```bash
-    pytest -s -n 2  tests\lt_sample_todo.py
+    pip install pytest-xdist
+    ```
+   
+*  Tests in Parallel:
+   
+   ```bash
+    pytest tests\parallel.py
     ```
 
-
-To use Pytest with LambdaTest, make sure you have the 2 environment variables LT_USERNAME and LT_ACCESS_KEY set. To obtain a username and access_key, sign up for free [here](https://lambdatest.com)).
 
 #####  Routing traffic through your local machine
 - Set tunnel value to `True` in test capabilities
