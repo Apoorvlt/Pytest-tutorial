@@ -42,7 +42,7 @@
   * Then open the terminal in the folder you want to clone the file. Run the command:
 	
 	``` 
-	git clone <paste the link here>
+	git clone https://github.com/Apoorvlt/Pytest-tutorial.git
 	```
   
 
