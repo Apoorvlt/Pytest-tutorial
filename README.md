@@ -36,10 +36,10 @@
 	``` 
 	git clone https://github.com/Apoorvlt/Pytest-tutorial.git
   	```
-  * After Clone or downloading folder you need to setup pytest, selenium and virtual environment. It will isolate the build from other setups you may have running and ensure that the tests run with the specified versions of the modules specified in the requirements.txt file.
-
+  * After Clone or downloading file you need to setup pytest, selenium and virtual environment. It will isolate the build from other setups you may have running and ensure that the tests run with the specified versions of the modules specified in the requirements.txt file. To run the file you need to open terminal in the project folder:
+  
 	```bash
-    pip install virtualenv
+    pip install -r requirements.txt
     ```
 * Create a virtual environment in your project folder the environment name is arbitrary.
 
@@ -48,7 +48,7 @@
     ```
   
 
-### Test Scenario
+## Test Scenario
 
 In our demonstration, we will be creating a script that uses the Selenium WebDriver to click check boxes and add button. If assert returns true, it indicates that the test case passed successfully and will show up in the automation logs dashboard else if assert returns false, the test case fails, and the errors will be displayed in the automation logs.
 
