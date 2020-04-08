@@ -35,7 +35,17 @@
 	
 	``` 
 	git clone https://github.com/Apoorvlt/Pytest-tutorial.git
-	```
+  	```
+  * After Clone or downloading folder you need to setup pytest, selenium and virtual environment. It will isolate the build from other setups you may have running and ensure that the tests run with the specified versions of the modules specified in the requirements.txt file.
+
+	```bash
+    pip install virtualenv
+    ```
+* Create a virtual environment in your project folder the environment name is arbitrary.
+
+	```bash
+    virtualenv venv
+    ```
   
 
 ### Test Scenario
