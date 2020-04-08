@@ -7,15 +7,13 @@
 
 ## Prerequisites for Pytest tutorial 
 
+### 1. Python Installation
+
   * [Download Python](https://www.python.org/downloads/) and click on Add to path and install.
   * To check if python installed correctly you need to go to terminal type python in command prompt. It will show you the current version you have downloaded.
  
-  
-###LambdaTest Credentials
-    * To use Pytest with LambdaTest, make sure you have the 2 environment variables LT_USERNAME and LT_ACCESS_KEY set. To obtain a username and access_key, sign up for free [here](https://lambdatest.com)).
-  
-  * After signing up you can find your username and access key [here](https://accounts.lambdatest.com/detail/profile)
- 
+### 2. LambdaTest Credentials
+  * To use Pytest with LambdaTest, make sure you have the 2 environment variables LT_USERNAME and LT_ACCESS_KEY set. To obtain a username and access_key, sign up for free [here](https://lambdatest.com). After signing up you can find your username and access key [here](https://accounts.lambdatest.com/detail/profile)
   * In the terminal export your LambdaTest Credentials as environmental variables:
        
        * For Mac/Linux
@@ -29,9 +27,9 @@
             set LT_USERNAME=<your LambdaTest username>
             set LT_ACCESS_KEY=<your LambdaTest access key>
     	    ```	
-* **Setup**
+### 3. Setup
+
   * You can download the file. To do this click on Clone or download button. You can download zip file.
-  * To clone the file click on Clone or download button and copy the link.
   * Then open the terminal in the folder you want to clone the file. Run the command:
 	
 	``` 
