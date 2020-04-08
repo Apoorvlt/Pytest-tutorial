@@ -9,11 +9,12 @@
 
 ### 1. Python Installation
 
-  * [Download Python](https://www.python.org/downloads/) and click on Add to path and install.
-  * To check if python installed correctly you need to go to terminal type python in command prompt. It will show you the current version you have downloaded.
+ * [Download Python](https://www.python.org/downloads/) and click on Add to path and install.
+ 
+ * To check if python installed correctly you need to go to terminal type python in command prompt. It will show you the current version you have downloaded.
  
 ### 2. LambdaTest Credentials
-  * To use Pytest with LambdaTest, make sure you have the 2 environment variables LT_USERNAME and LT_ACCESS_KEY set. To obtain a username and access_key, sign up for free [here](https://lambdatest.com). After signing up you can find your username and access key [here](https://accounts.lambdatest.com/detail/profile)
+  * To use Pytest with LambdaTest, make sure you have the 2 environment variables LT_USERNAME and LT_ACCESS_KEY set. To obtain a username and access_key, sign up for free [here](https://lambdatest.com). After signing up you can find your username and access key [here](https://accounts.lambdatest.com/detail/profile).
   * In the terminal export your LambdaTest Credentials as environmental variables:
        
        * For Mac/Linux
