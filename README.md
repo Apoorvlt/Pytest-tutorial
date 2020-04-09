@@ -205,12 +205,17 @@ For this, we need to first install the pytest-xdist plugin. Install pytest-xdist
     pytest tests\parallel.py
    ```
 
-####  Routing traffic through your local machine using Lambdatest
+![alt text](https://github.com/Apoorvlt/test/blob/master/cmdc.PNG)
+
+
+##  Routing traffic through your local machine using Lambdatest
 - Set tunnel value to `True` in test capabilities
 > OS specific instructions to download and setup tunnel binary can be found at the following links.
 >    - [Windows](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+Windows)
 >    - [Mac](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+MacOS)
 >    - [Linux](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+Linux)
+
+
 
 Below we see a screenshot that depicts our Pytest code is running over different browsers i.e Chrome, Firefox and Safari on the LambdaTest Selenium Grid Platform. The results of the test script execution along with the logs can be accessed from the LambdaTest Automation dashboard.
 
