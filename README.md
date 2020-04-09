@@ -50,9 +50,11 @@
 
 ## Test Scenario
 
+### Single Test
+
 In our demonstration, we will be creating a script that uses the Selenium WebDriver to click check boxes and add button. If assert returns true, it indicates that the test case passed successfully and will show up in the automation logs dashboard else if assert returns false, the test case fails, and the errors will be displayed in the automation logs.
 
-* **Single Test**- On a single environment (Windows 10) and single browser (Chrome)
+In desired capabilities we are using windows 10 platform and chrome browser with version 73.
 
 You have successfully configured your project and are ready to execute your first pytest selenium testing script. Here is the configuration file for pytest selenium Testing. Lets call it <code>conftest.py</code>.
 
@@ -144,32 +146,18 @@ You have successfully configured your project and are ready to execute your firs
 		assert title == driver.title
 	```
 
-* To run single test <code>single.py</code> open terminal in the folder you have downloaded or cloned the github repository.
-
-* The recommended way to run your tests would be in [virtualenv](https://virtualenv.readthedocs.org/en/latest/). It will isolate the build from other setups you may have running and ensure that the tests run with the specified versions of the modules specified in the requirements.txt file.
-
-	```bash
-    pip install virtualenv
-    ```
-* Create a virtual environment in your project folder the environment name is arbitrary.
-
-	```bash
-    virtualenv venv
-    ```
-
-* Install the required packages:
-
-	```bash
-    pip install -r requirements.txt
-    ```
-    
 * To run single.py file :
 
      ```
      pytest tests\single.py 
      ```
 
-* **Parallel Test code**
+### Parallel Test code
+
+Lambdatest provides you with parallel testing which helps you to execute multiple files at same time. By default, pytest runs tests in sequential order. 
+
+Here is the conftest
+	
 	```
 	import pytest
         import sys
@@ -205,9 +193,9 @@ You have successfully configured your project and are ready to execute your firs
 	``` 
 
 
-*  By default, pytest runs tests in sequential order. In a real scenario, a test suite will have a number of test files and each file will have a bunch of tests. This will lead to a large execution time. To overcome this, pytest provides us with an option to run tests in parallel.
+By default, pytest runs tests in sequential order. In a real scenario, a test suite will have a number of test files and each file will have a bunch of tests. This will lead to a large execution time. To overcome this, pytest provides us with an option to run tests in parallel.
 
-   For this, we need to first install the pytest-xdist plugin. Install pytest-xdist by running the following command −
+For this, we need to first install the pytest-xdist plugin. Install pytest-xdist by running the following command −
     
     ```bash
     pip install pytest-xdist
