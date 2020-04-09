@@ -124,7 +124,7 @@ You have successfully configured your project and are ready to execute your firs
 	    setattr(item, "rep_" + rep.when, rep)
 	```
 
-* **Test code**
+### Test code
 
 	```
 	import pytest
@@ -146,17 +146,23 @@ You have successfully configured your project and are ready to execute your firs
 		assert title == driver.title
 	```
 
-* To run single.py file :
+#### To run single.py file :
 
      ```
      pytest tests\single.py 
      ```
 
-### Parallel Test code
+### Parallel Testng
 
-Lambdatest provides you with parallel testing which helps you to execute multiple files at same time. By default, pytest runs tests in sequential order. 
+Lambdatest provides you with parallel testing which helps you to execute multiple files at same time. By default, pytest runs tests in sequential order. In a real scenario, a test suite will have a number of test files and each file will have a bunch of tests. This will lead to a large execution time. To overcome this, pytest provides us with an option to run tests in parallel.
 
-Here is the conftest
+For this, we need to first install the pytest-xdist plugin. Install pytest-xdist by running the following command −
+    
+    ```bash
+    pip install pytest-xdist
+    ``` 
+
+### Code
 	
 	```
 	import pytest
@@ -193,32 +199,25 @@ Here is the conftest
 	``` 
 
 
-By default, pytest runs tests in sequential order. In a real scenario, a test suite will have a number of test files and each file will have a bunch of tests. This will lead to a large execution time. To overcome this, pytest provides us with an option to run tests in parallel.
-
-For this, we need to first install the pytest-xdist plugin. Install pytest-xdist by running the following command −
-    
-    ```bash
-    pip install pytest-xdist
-    ```
-   
-*  Tests in Parallel:
+#### Run Test in Parallel:
    
    ```bash
     pytest tests\parallel.py
-    ```
+   ```
 
-Below we see a screenshot that depicts our Mocha code is running over different browsers i.e Chrome, Firefox and Safari on the LambdaTest Selenium Grid Platform. The results of the test script execution along with the logs can be accessed from the LambdaTest Automation dashboard.
-
-
-![alttext](https://github.com/Apoorvlt/test/blob/master/Capture.PNG)
-
-
-#####  Routing traffic through your local machine
+####  Routing traffic through your local machine using Lambdatest
 - Set tunnel value to `True` in test capabilities
 > OS specific instructions to download and setup tunnel binary can be found at the following links.
 >    - [Windows](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+Windows)
 >    - [Mac](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+MacOS)
 >    - [Linux](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+Linux)
+
+Below we see a screenshot that depicts our Pytest code is running over different browsers i.e Chrome, Firefox and Safari on the LambdaTest Selenium Grid Platform. The results of the test script execution along with the logs can be accessed from the LambdaTest Automation dashboard.
+
+
+![alttext](https://github.com/Apoorvlt/test/blob/master/Capture.PNG)
+
+
 
 ### Important Note:
 ---
