@@ -152,7 +152,7 @@ You have successfully configured your project and are ready to execute your firs
      pytest tests\single.py 
      ```
 
-### Parallel Testng
+### Parallel Testing
 
 Lambdatest provides you with parallel testing which helps you to execute multiple files at same time. By default, pytest runs tests in sequential order. In a real scenario, a test suite will have a number of test files and each file will have a bunch of tests. This will lead to a large execution time. To overcome this, pytest provides us with an option to run tests in parallel.
 
